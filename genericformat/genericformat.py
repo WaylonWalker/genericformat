@@ -8,7 +8,7 @@ def format(formatter: str, code: str):
     file.write(code.encode())
     file.seek(0)
 
-    cmd = ([*formatter.split(), file.name],)
+    # cmd = ([*formatter.split(), file.name],)
 
     proc = subprocess.Popen(
         [*formatter.split(), file.name],

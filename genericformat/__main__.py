@@ -6,7 +6,9 @@ from genericformat.genericformat import format
 
 def main():
     parser = argparse.ArgumentParser(description="format some code with a formatter")
-    parser.add_argument("code", nargs='?', default=None, type=str, help="the code to format")
+    parser.add_argument(
+        "code", nargs="?", default=None, type=str, help="the code to format"
+    )
     parser.add_argument(
         "--formatter",
         dest="formatter",

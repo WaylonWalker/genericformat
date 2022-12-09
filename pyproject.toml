@@ -30,11 +30,38 @@ requires-python = ">=3.6"
 name = "Waylon Walker"
 email = "waylon@waylonwalker.com"
 
+[tool.hatch.envs.default]
+dependencies = [
+ "black",
+ "flake8",
+ "isort",
+ "pytest",
+ "pytest-cov",
+ "seed-isort-config",
+]
+
+
 [project.license]
 file = "LICENSE"
 
 [project.scripts]
 genericformat = "genericformat.__main__:main"
+
+[tool.hatch.envs.default.scripts]
+cov = "pytest --cov-report=term-missing --cov-config=pyproject.toml --cov=genericformat --cov=tests"
+no-cov = "cov --no-cov"
+lint = "flake8 genericformat"
+format = "black --check genericformat"
+sort-imports = "isort genericformat"
+build-docs = "genericformat build"
+lint-test = [
+ "lint",
+ "format",
+ "seed-isort-config",
+ "sort-imports",
+ # "cov",
+]
+test-lint = "lint-test"
 
 [project.urls]
 Source = "https://github.com/waylonwalker/genericformat"
@@ -48,3 +75,7 @@ exclude = [
 ]
 
 [tool.hatch.build.targets.wheel]
+
+[tool.isort]
+profile = "black"
+known_third_party = []
